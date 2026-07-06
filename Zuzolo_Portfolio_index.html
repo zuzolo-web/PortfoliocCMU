@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ralph Zuzolo — Instructional Design Portfolio</title>
+<style>
+  :root {
+    --ink: #1c2b3a;
+    --ink-soft: #3d4f61;
+    --paper: #f6f3ec;
+    --paper-card: #fffdf8;
+    --rule: #d8cfbd;
+    --brass: #9c7a2e;
+    --brass-soft: #cbb26a;
+    --body-max: 860px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sans {
+    font-family: -apple-system, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", "SF Mono", "Courier New", monospace;
+    letter-spacing: 0.02em;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: var(--body-max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header / masthead ---------- */
+  header.masthead {
+    border-bottom: 3px double var(--rule);
+    padding: 64px 0 28px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 14px;
+  }
+
+  h1.name {
+    font-size: clamp(34px, 6vw, 52px);
+    margin: 0 0 6px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .role-line {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+  }
+
+  .contact-row {
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+  }
+  .contact-row span:not(:last-child)::after {
+    content: "·";
+    margin-left: 14px;
+    color: var(--brass-soft);
+  }
+
+  /* ---------- Intro ---------- */
+  .intro {
+    padding: 40px 0 8px;
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 68ch;
+  }
+
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Framework strip ---------- */
+  .framework {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 36px 0 8px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .framework-item {
+    flex: 1 1 200px;
+    padding: 18px 20px;
+    border-right: 1px solid var(--rule);
+  }
+  .framework-item:last-child { border-right: none; }
+  .framework-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 6px;
+  }
+  .framework-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ---------- Catalog section ---------- */
+  .catalog-heading {
+    margin: 68px 0 6px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .catalog-heading::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--rule);
+    transform: translateY(-4px);
+  }
+
+  .catalog {
+    border-top: 1px solid var(--rule);
+  }
+
+  .course {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 24px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .course-code {
+    font-size: 13px;
+    color: var(--brass);
+    padding-top: 3px;
+  }
+
+  .course-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+
+  .course-objective {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+    max-width: 62ch;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .tag {
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border: 1px solid var(--brass-soft);
+    color: var(--brass);
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  .course-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .launch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper-card);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 2px;
+    transition: background 0.15s ease;
+  }
+  .launch-btn:hover { background: var(--brass); }
+  .launch-btn .arrow { transition: transform 0.15s ease; }
+  .launch-btn:hover .arrow { transform: translateX(3px); }
+
+  .setup-note {
+    font-size: 12.5px;
+    color: #a4894f;
+    font-style: italic;
+  }
+
+  .request-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 2px;
+  }
+
+  .course.on-request {
+    opacity: 0.88;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 70px;
+    padding: 30px 0 60px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 560px) {
+    .course { grid-template-columns: 1fr; gap: 6px; }
+    .course-code { padding-top: 0; }
+    header.masthead { padding-top: 44px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow sans">Instructional Design Portfolio</p>
+    <h1 class="name">Ralph Zuzolo</h1>
+    <p class="role-line">Learning Engineer &amp; Instructional Designer — SCORM course development, adult learning theory, multimedia design</p>
+    <div class="contact-row sans">
+      <span>Warren, OH</span>
+      <span>330-979-6904</span>
+      <span>Zuzolo@gmail.com</span>
+      <span><a href="https://linkedin.com/in/ralph-zuzolo-17230910">linkedin.com/in/ralph-zuzolo-17230910</a></span>
+    </div>
+  </header>
+
+  <section class="intro">
+    <p>Each module below is a complete, SCORM 1.2-packaged course built end to end — learning objectives, worked examples, interactive practice, and assessment. Three are hosted live so you can step through the actual learner experience — <strong>click "Launch module"</strong> to open one exactly as it would appear inside a Learning Management System. The fourth is available as a walkthrough on request.</p>
+  </section>
+
+  <div class="framework sans">
+    <div class="framework-item">
+      <div class="framework-label">Foundation</div>
+      <div class="framework-name">Knowles' Andragogy</div>
+    </div>
+    <div class="framework-item">
+      <div class="framework-label">Foundation</div>
+      <div class="framework-name">Mayer's Multimedia Principles</div>
+    </div>
+    <div class="framework-item">
+      <div class="framework-label">Foundation</div>
+      <div class="framework-name">Retrieval Practice</div>
+    </div>
+    <div class="framework-item">
+      <div class="framework-label">Foundation</div>
+      <div class="framework-name">Action Mapping</div>
+    </div>
+  </div>
+
+  <h2 class="catalog-heading sans">Course Catalog</h2>
+
+  <div class="catalog">
+
+    <!-- Module 1 -->
+    <div class="course">
+      <div class="course-code mono">AI-105</div>
+      <div>
+        <h3 class="course-title">Applied Prompt Engineering for Real Estate Law</h3>
+        <p class="course-objective">Learners construct and refine prompts for real, task-specific real estate and legal workflows — moving from a vague request to a precise, checkable output through guided iteration.</p>
+        <div class="tags sans">
+          <span class="tag">Worked Example + Practice</span>
+          <span class="tag">Action Mapping</span>
+          <span class="tag">Dual Coding</span>
+        </div>
+        <div class="course-actions">
+          <!-- Replace href with your SCORM Cloud launch link -->
+          <a class="launch-btn sans" href="https://cloud.scorm.com/sandbox/content/courses/BLI8WDV4MZ/AI105_Applied_Prompt_Engineering_SCORM3f6ef6150-559f-496c-9a98-75412e5ca7e5/0/index.html" data-course="ai-105">Launch module <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="course">
+      <div class="course-code mono">RE-201</div>
+      <div>
+        <h3 class="course-title">Real Estate Appraisal</h3>
+        <p class="course-objective">Covers all three valuation approaches and applied Net Operating Income calculation, closing with a 20-term interactive matching exercise that revisits vocabulary from earlier in the lesson.</p>
+        <div class="tags sans">
+          <span class="tag">Retrieval Practice</span>
+          <span class="tag">Worked Example</span>
+          <span class="tag">Interactive Assessment</span>
+        </div>
+        <div class="course-actions">
+          <a class="launch-btn sans" href="https://cloud.scorm.com/sandbox/content/courses/BLI8WDV4MZ/ETI_RealEstateAppraisal_Lesson2_SCORM1e3cfa3cb-7a88-47fe-a81a-7d6ec519612d/0/appraisal-three-approaches.html" data-course="re-201">Launch module <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="course">
+      <div class="course-code mono">GEN-050</div>
+      <div>
+        <h3 class="course-title">Weekly Metacognition Check-In</h3>
+        <p class="course-objective">A recurring, lightweight template that prompts learners to reflect on what they retained, what's still shaky, and what to revisit — a spaced checkpoint that ties each week back to material from two to four weeks prior.</p>
+        <div class="tags sans">
+          <span class="tag">Spaced Retrieval</span>
+          <span class="tag">Self-Assessment</span>
+          <span class="tag">Recurring Checkpoint</span>
+        </div>
+        <div class="course-actions">
+          <a class="launch-btn sans" href="https://cloud.scorm.com/sandbox/content/courses/BLI8WDV4MZ/ETI_RealEstate_WeeklyMetacognition_SCORM790c41f2-6ae6-4e63-bbfc-8447026bbff2/0/weekly-metacognition-checkin-template.html" data-course="gen-050">Launch module <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="course on-request">
+      <div class="course-code mono">RE-210</div>
+      <div>
+        <h3 class="course-title">Selling Skills</h3>
+        <p class="course-objective">Objection handling, anchoring, loss aversion, and social proof, taught through realistic sales scenarios with ethics-flagged techniques so learners understand not just what works, but where the line is.</p>
+        <div class="tags sans">
+          <span class="tag">Realistic Scenario</span>
+          <span class="tag">Ethics-Flagged Design</span>
+          <span class="tag">Immediate Feedback</span>
+        </div>
+        <div class="course-actions">
+          <span class="request-badge sans">Available on request</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="sans">
+    <p>Portfolio prepared for Carnegie Mellon University — CMU Online, Learning Engineer application. Full course files and design rationale available on request.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
